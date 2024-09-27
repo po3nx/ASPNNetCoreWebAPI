@@ -4,6 +4,7 @@ using Application.Services;
 using Application.Mappings;
 using Infrastructure.Data;
 using Infrastructure.Repositories;
+using Infrastructure.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,9 +21,8 @@ builder.Services.AddScoped<IProductService, ProductService>();
 // Add Repositories
 builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
-// Add DbContext
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+// Add Database Configuration
+builder.Services.AddDatabaseConfiguration(builder.Configuration);
 
 var app = builder.Build();
 

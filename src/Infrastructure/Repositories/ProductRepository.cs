@@ -47,7 +47,7 @@ namespace Infrastructure.Repositories
 
         public async Task DeleteAsync(Product product)
         {
-            var existingProduct = await _context.Products.FindAsync(product.id);
+            var existingProduct = await _context.Products.FindAsync(product.Id);
             if (existingProduct != null)
             {
                 _context.Products.Remove(product);
